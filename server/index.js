@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -38,15 +37,6 @@ const companyInfo = {
 
 const contactSubmissions = [];
 
-// Nodemailer Transporter Setup
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER || 'padhmanaban.mg@gmail.com', // fallback for local testing
-    pass: process.env.EMAIL_PASS, // App password needed
-  },
-});
-
 // ===== API Routes =====
 
 // GET minerals
@@ -65,7 +55,7 @@ app.get('/api/company', (req, res) => {
 });
 
 // POST contact form / newsletter
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', (req, res) => {
   const { name, email, message, phone, type } = req.body;
 
   if (!email) {
@@ -84,37 +74,6 @@ app.post('/api/contact', async (req, res) => {
 
   contactSubmissions.push(submission);
   console.log('New contact submission:', submission);
-
-  // Send Email Notification
-  try {
-    const isNewsletter = type === 'newsletter';
-    const subject = isNewsletter
-      ? 'New Newsletter Subscription - SAN Mining'
-      : `New Contact Message from ${name || email}`;
-
-    const text = isNewsletter
-      ? `Email: ${email}\nTime: ${submission.createdAt}`
-      : `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nMessage:\n${message}\n\nTime: ${submission.createdAt}`;
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER || 'padhmanaban.mg@gmail.com',
-      to: 'padhmanaban.mg@gmail.com',
-      subject: subject,
-      text: text,
-      replyTo: email,
-    };
-
-    if (process.env.EMAIL_PASS) {
-      await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully');
-    } else {
-      console.log('Email skip (no password set)');
-    }
-
-  } catch (error) {
-    console.error('Error sending email:', error);
-    // Continue even if email fails, as the submission was saved locally
-  }
 
   res.status(201).json({
     success: true,
@@ -161,4 +120,3 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Export the app for Vercel
 module.exports = app;
-
