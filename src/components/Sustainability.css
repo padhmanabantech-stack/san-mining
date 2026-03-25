@@ -1,0 +1,247 @@
+/* ===== Sustainability Section ===== */
+
+/* Banner */
+.sus-hero {
+  position: relative;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 70px;
+}
+
+.sus-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.sus-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sus-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5); /* Matching typical San Mining dark */
+  z-index: 1;
+}
+
+.sus-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.sus-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Commitment Stats */
+.mt-80 {
+  margin-top: 80px;
+}
+
+.sus-stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 80px auto 0;
+}
+
+.sus-stat-item {
+  border-left: 3px solid var(--gold);
+  padding-left: 20px;
+  text-align: left;
+}
+
+.sus-stat-num {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.sus-stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Cards Grid */
+.sus-cards-wrapper {
+  padding-top: 20px;
+  padding-bottom: 80px;
+}
+
+.sus-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sus-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 50px 40px;
+  transition: all var(--transition-med);
+}
+
+.sus-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-gold);
+}
+
+.sus-card-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.sus-card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sus-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.sus-card-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.sus-card-bullets {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sus-card-bullets li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.sus-card-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* Greener Tomorrow Split */
+.sus-greener {
+  padding: 100px 60px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sus-greener-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sus-greener-image {
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sus-greener-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sus-greener-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sus-greener-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.sus-greener-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sus-greener-paragraphs p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sus-stats-container {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sus-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sus-greener-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .sus-stats-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .sus-stat-item {
+    width: 60%;
+  }
+
+  .sus-greener {
+    padding: 60px 20px;
+  }
+}
